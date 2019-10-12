@@ -1,25 +1,34 @@
 package Sort;
 
-public class SelectSort {
-    public static void main(String [] args){
-        int[] catWeight = {7000,6800,7100,5300,5900,7560,4699};/*Объявление переменной и определение массива
-         */
-        selectionSort(catWeight); /*вызов метода*/
+public class SelectSort{
+    public static void main(String[] args){
+        int[] catWeight = {7000, 6000, 7100, 5300};
+        selectionSort(catWeight);
     }
-
-    public static void selectionSort(int[] arr){
-        for (int catWeight = 0; catWeight < arr.length; catWeight++) /*цикл*/{
-            int min = arr[catWeight];
-            int min_i = catWeight;
-            for (int j = catWeight+1; j < arr.length; j++) {
+/*по мотивам скопипащенного из интернетов*/
+    static public void selectionSort(int[] arr){
+    /*По очереди будем просматривать все подмножества
+      элементов массива (0 - последний, 1-последний,
+      2-последний,...)*/
+        for (int i = 0; i < arr.length; i++) {
+        /*Предполагаем, что первый элемент (в каждом
+           подмножестве элементов) является минимальным */
+            int min = arr[i];
+            int min_i = i;
+        /*В оставшейся части подмножества ищем элемент,
+           который меньше предположенного минимума*/
+            for (int j = i+1; j < arr.length; j++) {
+                //Если находим, запоминаем его индекс
                 if (arr[j] < min) {
                     min = arr[j];
                     min_i = j;
                 }
             }
-            if (catWeight != min_i) {
-                int tmp = arr[catWeight];
-                arr[catWeight] = arr[min_i];
+        /*Если нашелся элемент, меньший, чем на текущей позиции,
+          меняем их местами*/
+            if (i != min_i) {
+                int tmp = arr[i];
+                arr[i] = arr[min_i];
                 arr[min_i] = tmp;
             }
         }
